@@ -1,0 +1,77 @@
+0.9.1
+- Fix to SQL Crawler, no longer chokes on unexpected nulls, no longer stops
+  crawl when there is a recoverable pipeline error
+- Webcrawler redirects now configurable
+- Some javadoc fixed
+
+0.9
+- Now depends on JDK 1.6
+- Logging now uses slf4j over logback. Configured using logback.xml.
+- Webcrawler connector added
+- Pipeline error, warning counts now reported
+- DocFilters can be enabled/disabled on the configuration page
+- Metadata-only filter added
+- XMLFilter bug fixes
+- Bugs in TokenList fixed
+- Connector is now an abstract class, not an interface. Simplifies
+  the development of connectors.
+- Each Stage now has access to the StageList (that is, the pipeline), which
+  now has access to the parent Connector.
+- Connectors and Stages have better error reporting. They implement error()
+  and warn() methods. See the docs for more.
+- New implementation of ItemSender/ItemReceiver. Does not depend
+  on external webservices library. Is not yet finished.    
+- DocBinary now stores the content in an internal byte array instead
+  of an InputStream. The benefit is that more than one stage can
+  now access the content.
+- DiskWriter stage now writes the DocBinary content as well as the XML.
+- There's start on a new scheduler to replace Quartz. Not fully implemented,
+  not yet in production.
+- Jetty is now configured using jetty.xml and not in code. Makes it easier
+  to reconfigure.
+- There are a few more FileUtil methods.       
+
+0.8
+- DocFilters have be separated out to a stage. They're no longer invoked within a connector.
+- The DocFilter interface now looks like the Stage interface. All DocFilters refactored.
+- Bug fixes in DocFilterFactory
+- The Item class now carries a DocBinary object. This object contains the binary
+  content of a document.
+- FileScanner supports a max file size parameter  
+- DocFilters are now configurable just like stages. See the DocFilterStage.
+- src.zip is not included in the main release, and contains all of the test code and Eclipse project files.
+- The select stages page handles standard pipelines a little differently.
+- The logger closes its log files more reliably now.
+- Many bug fixes in GenericScanner
+- Multi-item XML handled differently. There's now a FileSystem implementation for it.
+- AnnotationConstants added
+- Fixes to DiskWriter stage 
+- Many bug fixes to utility classes
+
+0.7
+- HTMLFilter added
+- SelectStages and ConfigStages pages reworked; now support duplicate stages. 
+  Stages now have ids. UI changes: jquery dialog added.
+- Add Metadata option added to FileScanner
+- Headers on the left-side menu now suppressed if no sub-options visible
+- Slight mod to job file format: <pipeline-name> no longer used.
+- Interim bug fixes to ItemSender/Receiver.
+- Bug fixed in DerbyLinkQueue: it's now possible to have two linkqueue tables in a single 
+  Derby database without an index conflict.
+
+0.6
+- Version numbering modified
+- OpenCalais stage added
+- DocFilters can now be configured in the admin interface
+- ItemReceiver connector / ItemSender stage partially implemented
+- Some refactoring of Token, TokenList
+- LinkQueue fixes
+- GenericScanner fixes
+- Many small bug fixes
+
+0.5.1678
+Minor bug fixes, NPEs. Nothing major.
+
+0.5
+Big refactoring of all major classes
+

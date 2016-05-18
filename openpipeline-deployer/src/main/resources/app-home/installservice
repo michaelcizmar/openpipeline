@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# Use this script installing jettyservice (Requires 'sudo' privileges)
+
+# Install jettyservice
+sudo cp jettyservice /etc/init.d/
+sudo chown root:root /etc/init.d/jettyservice
+
+# Starts jettyservice on reboot
+sudo chkconfig jettyservice on

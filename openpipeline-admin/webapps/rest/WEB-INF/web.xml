@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee">
+
+  <display-name>REST app for receiving items</display-name>
+
+  <servlet>
+    <servlet-name>restapp</servlet-name>
+    <servlet-class>org.openpipeline.pipeline.connector.ItemReceiverServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>restapp</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>  
+  
+</web-app>

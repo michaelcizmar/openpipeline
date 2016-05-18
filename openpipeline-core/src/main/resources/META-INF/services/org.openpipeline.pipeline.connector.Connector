@@ -1,0 +1,7 @@
+org.openpipeline.pipeline.connector.FileScanner
+org.openpipeline.pipeline.connector.SQLDatabaseCrawler
+org.openpipeline.pipeline.connector.ItemReceiverConnector
+org.openpipeline.pipeline.connector.webcrawler.WebCrawler
+org.openpipeline.pipeline.connector.csvcrawler.CSVCrawler
+org.openpipeline.pipeline.connector.webservice.DrupalServicesConnector
+org.openpipeline.pipeline.connector.S3Crawler

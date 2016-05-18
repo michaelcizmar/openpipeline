@@ -1,0 +1,33 @@
+<?xml version='1.0'?>
+<project name="diesel" default="all" basedir="/dev/openpipeline/trunk/openpipeline-core">
+
+	<!--
+	This build file contains some extra tasks 
+	that are not part of the main build process.
+	-->
+	
+	<property name="srcdir" location="src/main/java" />
+	<property name="testsrcdir" location="src/test/java" />
+
+	<property name="jflexdir" location="c:/apps/jflex-1.4.3/lib" />
+	
+	<target name="all" />
+	
+	<!-- This target isn't part of the regular build process. It
+		 regenerates the lexers using JFlex. -->
+	<target name="jflex_lexers">
+		<taskdef name="jflex" classname="JFlex.anttask.JFlexTask">
+			<classpath path="${jflexdir}/JFlex.jar"/>
+		</taskdef>
+		
+		<property name="lexerdir" value="${srcdir}/org/openpipeline/html/" />
+		<delete file="${lexerdir}HTMLLexer.java" />
+		<jflex
+		    file="${lexerdir}HTMLLexer.flex"
+		    outdir="${lexerdir}"
+		/>
+		
+	</target>
+
+
+</project>

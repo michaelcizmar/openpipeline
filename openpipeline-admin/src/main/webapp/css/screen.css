@@ -1,0 +1,212 @@
+	
+	* {
+		margin : 0;
+		padding : 0;
+	}
+	
+	body {
+		font : normal 11px 'Lucida Grande',Verdana,Arial,sans-serif;
+		line-height : 15px;
+		color : #000;
+		background : #E6E6E6 url('../images/bg_body.gif') repeat-y top left;
+	}
+	a:link,a:visited {
+		text-decoration : none;
+		font-weight : bold;
+	}
+	a:hover,a:active {
+		text-decoration : underline;
+	}
+	h2 {
+		font-size : 18px;
+		font-weight : normal;
+		letter-spacing : -1px;
+	}
+	h2 span {
+		font-size : 11px;
+	}
+	select {
+		font : normal 11px 'Lucida Grande',Verdana,Arial,sans-serif;
+	}
+
+	input {
+		font : normal 11px 'Lucida Grande',Verdana,Arial,sans-serif;
+	}
+
+	pre {
+    	white-space: pre-wrap;       /* css-3 */
+     	word-wrap: break-word;       /* Internet Explorer 5.5+ */
+	}
+
+	#content h2, #content p {
+		margin-bottom : 15px;
+		width : 98%;
+	}
+	
+	#header {
+		position : relative;
+		min-width : 796px;
+		height : 110px;
+		background : url('../images/bg_header.gif') no-repeat top left;
+	}
+	#header img {
+		border : 0;
+		float : left;
+	}
+	* html #header {
+		height : 108px;
+	}
+	#header .cap {
+		float : right;
+		width : 13px;
+		height : 110px;
+		background : url('../images/cap_header.gif') no-repeat top left;
+	}
+	#title {
+		position : absolute;
+		top : 90px;
+		left : 0;
+		width : 100%;
+	}
+	#title h2 {
+		width : 400px;
+		float : left;
+		position : relative;
+		padding-left : 205px;
+	}
+	#title form {
+		width : 500px;
+		float : right;
+		text-align : right;
+		position : relative;
+		margin-right : 15px;
+		padding-right : 20px;
+	}
+	
+	#wrapper {
+		height : 554px;
+	}
+	
+	
+	#sidebar {
+		width : 161px;
+		min-width : 161px;
+		padding-left : 20px;
+		vertical-align : top;
+		background : url('../images/bg_sidebar.gif') no-repeat top left;
+	}
+	#sidebar dl {
+		margin-bottom : 15px;
+	}
+	#sidebar dt {
+		font-weight : bold;
+	}
+	#sidebar dd a:link,#sidebar dd a:visited {
+		display : block;
+		padding-left : 15px;
+		font-weight : normal;
+		color : #000;
+	}
+	#sidebar dd a:hover,#sidebar dd a:active {
+		text-decoration : none;
+		color : #fff;
+	}
+	
+	#index_table {
+		width: 70%;
+	} 
+	
+	#index_table td {
+		padding : 5px;
+	}
+	
+	#container {
+		width : 15px;
+		min-width : 15px;
+		background : url('../images/bg_container.gif') repeat-y top left;
+	}
+	
+	#content {
+		min-width : 580px;
+		vertical-align : top;
+		padding : 10px;
+		padding-right : 20px;
+		background : #fff url('../images/bg_content.gif') repeat-y top right;
+	}
+	
+	#footer {
+		min-width : 796px;
+		background : url('../images/bg_footer.gif') repeat-x top left;
+	}
+	#footer .cap {
+		float : right;
+		width : 13px;
+		height : 58px;
+		background : url('../images/cap_footer.gif') no-repeat top left;
+	}
+	#footer p {
+		float : right;
+		width : 400px;
+		text-align : right;
+		padding-top : 20px;
+		padding-right : 10px;
+	}
+	
+	
+	tr.alt td {
+		background : #eee;
+	}
+	#att_table {
+		width : 98%;
+	}
+	#att_table th,#att_table td {
+		padding : 3px;
+		text-align : left;
+	}
+	#att_table th {
+		font-weight : bold;
+		background : #F7F2E4;
+		border-bottom : 2px solid #EFE6C9;
+	}
+	#att_table td {
+	}
+	
+	
+	#config_table {
+		width : 98%;
+	}
+	#config_table th,#config_table td {
+		padding : 3px;
+		text-align : left;
+	}
+
+	#config_table td.cmdlink {
+		text-align : right;
+	}
+	#config_table td.chk {
+		text-align : center;
+	}
+	#config_table td.center, th.center {
+		text-align : center;
+	}
+
+	td.cmdlink {
+		text-align : right;
+	}
+
+	#msg_table {
+		width : 72%;
+	}
+	#msg_table td {
+		text-align : left;
+	}
+
+	#loglines {
+		background-color: white;
+		height:450px; 
+		width:100%; 
+		overflow: auto;  
+		border: 1px solid lightgrey;
+		word-wrap: break-word;
+	}
+	

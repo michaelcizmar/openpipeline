@@ -1,0 +1,22 @@
+	a:link,a:visited {
+		color : #19a544;
+	}
+	
+	#sidebar dd a:hover,#sidebar dd a:active {
+		background : #19a544;
+	}
+	
+	#config_table th {
+		font-weight : bold;
+		background : #f0f0f0;
+		border-bottom : 3px solid #cccccc;
+	}
+	
+	.rowhover tr:hover {
+		background : #f0f0f0;
+	}
+	
+	#msg_table td {
+		padding : 6px;
+		background: #e1c58f;
+	}

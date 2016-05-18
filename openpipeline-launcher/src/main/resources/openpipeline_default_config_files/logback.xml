@@ -1,0 +1,47 @@
+<configuration>
+
+	<property name="MAIN_LOG_DIR" value="${app.home}/logs"/>
+	<property name="DEFAULT_ENCODER_PATTERN" value="%date{yyyy-MM-dd HH:mm:ss} %logger %-4relative %-5level %msg%n" />
+	<property name="DEFAULT_FILENAME_PATTERN" value="-%d{yyyy-MM-dd}.log" />
+
+	<logger name="org.quartz" additivity="false">
+		<appender class="ch.qos.logback.core.helpers.NOPAppender"></appender>	
+	</logger>
+
+	<logger name="org.openpipeline.server.launcher.NCSARequestLog" additivity="false">
+		<appender class="ch.qos.logback.core.rolling.RollingFileAppender">
+			<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+				<fileNamePattern>${MAIN_LOG_DIR}/request/request${DEFAULT_FILENAME_PATTERN}</fileNamePattern>
+			</rollingPolicy>
+			<encoder><pattern>%msg%n</pattern></encoder>
+		</appender>	
+	</logger>
+
+	<logger name="indexlog" additivity="false">
+		<appender class="ch.qos.logback.core.rolling.RollingFileAppender">
+			<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+				<fileNamePattern>${MAIN_LOG_DIR}/indexlog/indexlog${DEFAULT_FILENAME_PATTERN}</fileNamePattern>
+			</rollingPolicy>
+			<encoder><pattern>${DEFAULT_ENCODER_PATTERN}</pattern></encoder>
+		</appender>	
+	</logger>
+
+	<logger name="searchlog" additivity="false">
+		<appender class="ch.qos.logback.core.rolling.RollingFileAppender">
+			<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+				<fileNamePattern>${MAIN_LOG_DIR}/searchlog/searchlog${DEFAULT_FILENAME_PATTERN}</fileNamePattern>
+			</rollingPolicy>
+			<encoder><pattern>%msg%n</pattern></encoder>
+		</appender>	
+	</logger>
+	
+	<root level="INFO">
+		<appender class="ch.qos.logback.core.rolling.RollingFileAppender">
+			<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+				<fileNamePattern>${MAIN_LOG_DIR}/root/root${DEFAULT_FILENAME_PATTERN}</fileNamePattern>
+			</rollingPolicy>
+			<encoder><pattern>${DEFAULT_ENCODER_PATTERN}</pattern></encoder>
+		</appender>	
+	</root>
+  
+</configuration>

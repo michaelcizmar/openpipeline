@@ -1,0 +1,78 @@
+<assembly
+	xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 http://maven.apache.org/xsd/assembly-1.1.2.xsd">
+
+	<id>dist</id>
+
+	<!-- Generate a ZIP file. -->
+
+	<formats>
+		<format>zip</format>
+		<!-- <format>dir</format> -->
+	</formats>
+
+	<includeBaseDirectory>false</includeBaseDirectory>
+
+	<!-- Copy all the Openpipeline dependencies to jetty/lib directory. -->
+	<dependencySets>
+		<dependencySet>
+			<directoryMode>0755</directoryMode>
+			<fileMode>0644</fileMode>
+			<outputDirectory>app-home/lib</outputDirectory>
+			<unpack>false</unpack>
+			<useProjectArtifact>false</useProjectArtifact>
+		</dependencySet>
+	</dependencySets>
+
+	<!-- Copy all the Enginez war dependencies in the jetty/webapps directory. -->
+	<moduleSets>
+		<moduleSet>
+			<!-- Enable access to all projects in the current multimodule build! -->
+			<useAllReactorProjects>true</useAllReactorProjects>
+			<!-- Now, select which projects to include in this module-set. -->
+			<includes>
+				<include>org.openpipeline:openpipeline-admin</include>
+			</includes>
+			<binaries>
+				<directoryMode>0755</directoryMode>
+				<fileMode>0644</fileMode>
+				<outputDirectory>app-home/webapps/</outputDirectory>
+				<includeDependencies>false</includeDependencies>
+				<unpack>false</unpack>
+
+				<!-- Strip out the version number from the war filename. Keeps jetty 
+					context configuration in sync. -->
+				<outputFileNameMapping>${module.artifactId}.${module.extension}</outputFileNameMapping>
+			</binaries>
+		</moduleSet>
+	</moduleSets>
+	
+	<fileSets>
+		<fileSet>
+			<directory>target/assembly-files/app-home</directory>
+			<outputDirectory>app-home</outputDirectory>
+			<lineEnding>unix</lineEnding>
+			<directoryMode>0755</directoryMode>
+			<fileMode>0755</fileMode>
+		</fileSet>
+		
+		<!-- Create empty directories -->
+		<fileSet>
+			<directory>target/assembly-files/app-home</directory>
+			<outputDirectory>app-home/logs</outputDirectory>
+			<directoryMode>0755</directoryMode>
+			<excludes>
+				<exclude>*</exclude>
+			</excludes>
+		</fileSet>		
+		<fileSet>
+			<directory>target/assembly-files/app-home</directory>
+			<outputDirectory>app-home/config</outputDirectory>
+			<directoryMode>0755</directoryMode>
+			<excludes>
+				<exclude>*</exclude>
+			</excludes>
+		</fileSet>		
+	</fileSets>
+</assembly>

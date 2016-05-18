@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+
+  <!--
+  This file contains preconfigured pipelines which appear in a 
+  dropdown on the Select Stages page in the admin app.
+  
+  To add another standard pipeline, just add another <stages> section.
+  The easy way to do it is to create a custom pipeline, and then copy
+  the <stages> section from the job file here.
+  -->
+  
+  <stages>
+    <pipeline-name>Default</pipeline-name>
+    <stage>
+      <classname>org.openpipeline.pipeline.stage.DocFilterStage</classname>
+    </stage>
+    <stage>
+      <classname>org.openpipeline.pipeline.stage.SimpleTokenizer</classname>
+    </stage>
+    <stage>
+      <classname>org.openpipeline.pipeline.stage.DiskWriter</classname>
+    </stage>
+  </stages>  
+  
+</root>

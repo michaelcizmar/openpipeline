@@ -1,0 +1,14 @@
+org.openpipeline.pipeline.stage.SimpleTokenizer
+org.openpipeline.pipeline.stage.SimpleSentenceExtractor
+org.openpipeline.pipeline.stage.DiskWriter
+org.openpipeline.pipeline.stage.AttributeRemover
+org.openpipeline.pipeline.stage.AttributeSplitter
+org.openpipeline.pipeline.stage.RegexExtractor
+org.openpipeline.pipeline.stage.Flattener
+org.openpipeline.pipeline.stage.ItemSender
+org.openpipeline.pipeline.stage.opencalais.OpenCalais
+org.openpipeline.pipeline.stage.DocFilterStage
+org.openpipeline.pipeline.stage.AttributeRenamer
+org.openpipeline.pipeline.stage.DateFormatConverter
+org.openpipeline.pipeline.stage.ItemReplicator
+org.openpipeline.pipeline.stage.AttributeValueConverter

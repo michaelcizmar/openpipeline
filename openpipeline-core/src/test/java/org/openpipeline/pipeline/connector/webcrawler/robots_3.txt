@@ -1,0 +1,7 @@
+# Test Allow/Disallow
+
+User-agent: *
+Allow: /
+Disallow: /cgi-bin/
+Disallow: /foren/
+Disallow: /bib/lhb/

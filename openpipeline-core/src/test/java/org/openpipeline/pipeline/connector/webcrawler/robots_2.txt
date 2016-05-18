@@ -1,0 +1,25 @@
+# Test Allow/Disallow
+
+User-agent: WeirdBot
+Disallow: /links/listing.html
+Disallow: /tmp/ 
+Disallow: /private/
+Disallow: /*/private/* 
+Crawl-delay: 3.0
+
+User-agent: openpipebot
+Disallow:
+Visit-time: 1800-1900
+
+User-agent: *
+Allow: /images/2003/
+Disallow: /images/
+Disallow: /*pdf
+Allow: / 
+Disallow: /temp*
+Allow: *temperature*
+Disallow: /private/
+Disallow: /*/private/* 
+Crawl-delay: 0.5
+Visit-time: 1900-2400
+

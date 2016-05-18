@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+#
+# NOTE: Do not delete these 3 lines below.
+# They are required by the "chkconfig" command, which
+# lets you flag a service to autostart on reboot.
+#
+# =========================================================
+# chkconfig: 3 99 99
+# description: Use this script to manage Jetty 7 webserver.
+# processname: jettyservice
+# =========================================================
+
+usage()
+{
+    echo "Usage: ${0##*/} {start|stop|restart|status}"
+    exit 1
+}
+
+# If no commandline parameter is provided, call usage method.
+[ $# -gt 0 ] || usage
+
+
+
+##############
+#Set variables
+##############
+JETTY_HOME=/home/ec2-user/app-home
+JETTY_CMD=($JETTY_HOME/jetty.sh)
+
+case "$1" in
+  start)
+        ${JETTY_CMD} start
+        ;;
+  stop)
+        ${JETTY_CMD} stop
+        ;;
+  restart)
+        ${JETTY_CMD} restart
+        ;;
+
+  status)
+        ${JETTY_CMD} status
+     ;;
+  *)
+
+	usage
+	;;
+esac
+
+exit 0

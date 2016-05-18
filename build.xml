@@ -1,0 +1,208 @@
+<?xml version='1.0'?>
+<project name="openpipeline" default="all" basedir="/dev/openpipeline/trunk/openpipeline">
+
+	<!--
+	Manual tasks:
+		Run unit tests
+		Update the changelog
+		Remove the -SNAPSHOT from the version
+
+	To check for updates to dependencies, do:
+		mvn versions:display-dependency-updates
+	To check for updates to plugins, do:
+		mvn versions:display-plugin-updates
+	To see a dependency tree, do:
+		mvn dependency:tree
+		
+	Then to run a build, just do mvn install.
+	Do install instead of package so the diesel project can do a build as well.
+	-->
+	
+	<property name="srcdir" location="src/main/java" />
+	<property name="install4j.dir" location="c:\Program Files\install4j" />
+	
+	<target name="all" depends="getversion, check_resources, src_snapshot, release, javadoc, installer"></target>
+
+	
+	<!-- gets the version, checks it, gets the svn revision, creates some properties -->
+	<target name="getversion">
+		
+		<taskdef name="checkversion" 
+			classname="org.openpipeline.build.CheckVersion" 
+			classpath="target/test-classes;${test_classpath}"/>
+
+		<!-- loads vers, svnrev properties -->
+		<checkversion 
+			artifactid="${artifactId}"
+			pomversion="${maven_version}" 
+			versionsource="src/main/java/org/openpipeline/server/Server.java"/>
+		
+		<property name="app-name"  value="${artifactId}-${vers}"/> 
+		
+		<!-- once we have the proper version name, create output dirs -->	
+		<property name="release_dir" location="../../releases/${app-name}"/>
+		<property name="tags_dir" location="../../tags"/>
+		<property name="src_snapshot_dir" location="${tags_dir}/${app-name}"/>
+		<property name="doc_dir" location="${release_dir}/doc"/>
+		
+	</target>
+
+	<!-- does any necessary checking to see that resources are up to date -->
+	<target name="check_resources">
+		<fail>
+			<condition>
+				<not>
+					<filesmatch file1="config/standard-pipelines.xml" file2="src/main/resources/standard-pipelines.xml"/>
+				</not>
+			</condition>
+		</fail>
+	</target>
+
+	<!-- make a snapshot of the src -->
+	<target name="src_snapshot">
+		<delete dir="${src_snapshot_dir}"/>
+
+		<copy todir="${src_snapshot_dir}" preservelastmodified="true" >
+			<fileset dir=".">
+				<include name="**/*.*"/>
+				<exclude name="**/log/"/>
+				<exclude name="**/logs/"/>
+				<exclude name="**/derby/"/>
+				<exclude name="**/target/"/>
+				<exclude name="**/config/jobs/*"/>
+			</fileset>
+		</copy>
+	</target>
+
+	
+	<!-- make the release dir -->
+	<target name="release">
+		
+		<delete dir="${release_dir}"/>
+
+		<!-- config -->
+		<copy todir = "${release_dir}/config" preservelastmodified="true" >
+			<fileset dir="config"> 
+				<include name="standard-pipelines.xml"/>
+				<include name="serverconfig.xml"/>
+				<include name="images/*"/>
+			</fileset>
+		</copy>
+
+		<!-- lib dir --> 
+		<copy flatten="true" toDir="${release_dir}/lib" includeEmptyDirs="false" >
+			<fileset dir="target/lib"/> 
+		</copy>
+		
+		<!-- updates the manifest, adds the version -->
+		<jar destfile="target/${artifactId}-${maven_version}.jar" update="true">
+		    <manifest>
+		      <attribute name="Implementation-Vendor" value="Dieselpoint, Inc."/>
+		      <attribute name="Implementation-Title" value="OpenPipeline"/>
+		      <attribute name="Implementation-Version" value="${vers}"/>
+			  <attribute name="SVN-Revision" value="${svnrev}"/>
+		    </manifest>
+		</jar>
+		
+		<!-- rename and copy openpipeline jar file -->
+		<copy 
+			file="target/${artifactId}-${maven_version}.jar" 
+			tofile="${release_dir}/lib/${app-name}.jar"/>
+		
+		<!-- src -->
+		<zip 
+			destfile = "${release_dir}/src.zip" 
+			basedir = "${tags_dir}"
+			includes = "${app-name}/**/*"
+			/> 
+		
+		<!-- webapps -->
+		<copy todir = "${release_dir}/webapps" preservelastmodified="true" >
+			<fileset dir="webapps">
+			    <include name="admin/**/*"/>
+			    <include name="root/**/*"/>
+			    <include name="webservices/**/*"/>
+				<exclude name="**/*.bak"/>
+			</fileset>
+		</copy>
+
+		<!-- deploy files in main directory -->
+		<copy file="CHANGELOG.txt" todir="${release_dir}"/>
+		<copy file="LICENSE.txt" todir="${release_dir}"/>		
+		<copy file="README.txt" todir="${release_dir}"/>		
+		<copy file="NOTICE.txt" todir="${release_dir}"/>		
+		<copy file="run.bat" todir="${release_dir}"/>		
+		<copy file="run.sh" todir="${release_dir}"/>		
+		
+	</target>
+	
+	
+	<target name="javadoc">
+		<property name="javadocdir" location="${doc_dir}/javadoc" />
+		
+		<delete dir="${javadocdir}"/>
+		
+		<javadoc destdir="${javadocdir}" 
+				 classpath="${compile_classpath}"
+				 access="public" 
+				 use="true" 
+				 notree="false" 
+				 nonavbar="false" 
+				 noindex="false" 
+				 splitindex="true" 
+				 author="false" 
+				 version="true" 
+				 nodeprecatedlist="false" 
+				 nodeprecated="false" 
+				 overview="overview.html" 
+				 doctitle="OpenPipeline" 
+				 additionalparam="-breakiterator" > 
+			
+			<link href="http://download-llnw.oracle.com/javase/6/docs/api/" />
+			
+			<tag name="todo" description="none" enabled="false" />
+			<tag name="Override" description="none" enabled="false" />
+
+			<fileset dir="${srcdir}" defaultexcludes="yes">
+    		</fileset>
+		</javadoc>
+	</target>
+	
+	<!-- Creates an installer for different platforms. -->
+	<taskdef name="install4j"
+               classname="com.install4j.Install4JTask"
+               classpath="${install4j.dir}\bin\ant.jar"/>
+               
+	<target name="installer">
+		<install4j projectfile="src/test/resources/openpipeline.install4j">
+			<variable name="openpipeline.version" value="${vers}"/>
+			<variable name="openpipeline.release.dir" value="${release_dir}"/>
+		</install4j>
+	</target>
+	
+	
+	<!-- This target isn't part of the regular build process. It
+		 regenerates the lexers using JFlex. -->
+	<property name="jflexdir" location="c:/apps/jflex-1.4.3/lib" />
+	<target name="jflex_lexers">
+		<taskdef name="jflex" classname="JFlex.anttask.JFlexTask">
+			<classpath path="${jflexdir}/JFlex.jar"/>
+		</taskdef>
+		
+		<property name="docfilterdir" value="${srcdir}/org/openpipeline/pipeline/docfilter/" />
+
+		<delete file="${docfilterdir}HTMLLexer.java" />
+		<jflex
+		    file="${docfilterdir}HTMLLexer.flex"
+		    outdir="${docfilterdir}"
+		/>
+		
+		<delete file="${docfilterdir}TagLexer.java" />
+		<jflex
+		    file="${docfilterdir}TagLexer.flex"
+		    outdir="${docfilterdir}"
+		/>
+	</target>
+	
+	
+</project>

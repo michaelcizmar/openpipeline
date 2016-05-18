@@ -1,0 +1,29 @@
+<configuration>
+  <!-- always good to activate OnConsoleStatusListener -->
+ 
+  <statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener" />  
+ 
+  	<!-- these properties must be defined or LoggerUtil won't work properly -->
+	<property name="MAIN_LOG_DIR" value="${app.home}/logs"/>
+	
+	<!-- If you append .zip at the end of the DEFAULT_FILENAME_PATTERN, it will compress the request log file at the end of the day. 
+	 If you want to enable compression, consider uncommenting the <file> tag below. This will allow current day's logs to be appended
+	 to request.log. When the log rolls over the next day, previous day log files are stored into request-xxxx-xx-xx.log.zip file. -->
+	<property name="DEFAULT_FILENAME_PATTERN" value="-%d{yyyy-MM-dd}.log" />
+	
+  <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <!--
+	<file>${MAIN_LOG_DIR}/request/request.log</file>
+	-->
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>${MAIN_LOG_DIR}/request/request${DEFAULT_FILENAME_PATTERN}</fileNamePattern>
+    </rollingPolicy>
+
+	<!-- "combined" is a short form for widely used pattern "%h %l %u %t "%r" %s %b "%i{Referer}" "%i{User-Agent}" -->
+   <encoder>
+      <pattern>combined</pattern>
+    </encoder>
+  </appender>
+ 
+  <appender-ref ref="FILE" />
+</configuration>

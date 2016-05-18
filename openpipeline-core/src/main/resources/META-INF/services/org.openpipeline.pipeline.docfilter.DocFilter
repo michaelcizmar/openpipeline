@@ -1,0 +1,4 @@
+org.openpipeline.pipeline.docfilter.HTMLFilter
+org.openpipeline.pipeline.docfilter.PlainTextFilter
+org.openpipeline.pipeline.docfilter.XMLFilter
+org.openpipeline.pipeline.docfilter.MetadataOnlyFilter

@@ -1,0 +1,19 @@
+# Test user agent
+
+User-agent: googlebot
+Allow: /
+Disallow: *pdf
+Visit-time: 1830-2130
+
+User-agent: openpipebot
+Allow: /images/2003/
+Disallow: /files/
+Request-rate: 1/3
+Visit-time: 0230-0330
+
+User-agent: *
+Allow: *html
+Disallow: /images/
+Crawl-delay: 100
+
+

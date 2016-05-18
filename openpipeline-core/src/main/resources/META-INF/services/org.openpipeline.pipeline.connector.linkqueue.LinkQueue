@@ -1,0 +1,2 @@
+org.openpipeline.pipeline.connector.linkqueue.DerbyLinkQueue
+org.openpipeline.pipeline.connector.linkqueue.MySQLLinkQueue
