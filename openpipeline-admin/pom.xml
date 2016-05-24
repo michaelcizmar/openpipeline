@@ -3,7 +3,7 @@
 	<parent>
 		<artifactId>openpipeline</artifactId>
 		<groupId>org.openpipeline</groupId>
-		<version>0.9.4-final</version>
+		<version>0.9.5</version>
 	</parent>
 	
 	<name>OpenPipeline Admin</name>

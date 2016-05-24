@@ -32,7 +32,7 @@ public class AllTests extends TestCase {
 
     public void test() {
     	
-    	System.setProperty("app.home", "/dev/openpipeline/trunk/openpipeline-launcher");
+    	System.setProperty("app.home", "/dev/diesel.search4/openpipeline/openpipeline-launcher");
     	Server.getServer().getHomeDir();
     	
         TestSuite suite = new TestSuite();
