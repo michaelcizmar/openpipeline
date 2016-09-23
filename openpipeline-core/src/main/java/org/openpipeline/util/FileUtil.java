@@ -59,8 +59,11 @@ public class FileUtil {
 				}
 			}
 		}
-		if (file.exists() && !file.delete()) {
-			throw new IOException("Could not delete file: " + file.toString());
+		if (file.exists()) {
+			System.gc(); // windows bug. forces release of file
+			if (!file.delete()) {
+				throw new IOException("Could not delete file: " + file.toString());
+			}
 		}
 	}
 	
