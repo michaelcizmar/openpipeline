@@ -508,7 +508,7 @@ public class NCSARequestLog extends AbstractLifeCycle implements RequestLog
 		buf.append("] \"");
 		buf.append(request.getMethod());
 		buf.append(' ');
-		buf.append(request.getUri().toString());
+		buf.append(request.getRequestURI().toString());
 		buf.append(' ');
 		buf.append(request.getProtocol());
 		buf.append("\" ");

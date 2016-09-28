@@ -1,4 +1,4 @@
-package com.openpipeline.filesystem.s3;
+package org.openpipeline.filesystem.s3;
 
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;

@@ -10,12 +10,12 @@
 
 	<groupId>org.openpipeline</groupId>
 	<artifactId>openpipeline</artifactId>
-	<version>0.9.6</version>
+	<version>0.9.7</version>
 	<packaging>pom</packaging>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<jetty.version>9.1.4.v20140401</jetty.version>
+		<jetty.version>9.3.12.v20160915</jetty.version>
 	</properties>
 
 	<modules>
@@ -27,11 +27,15 @@
 
 	<dependencyManagement>
 		<dependencies>
+
+
 			<dependency>
 				<groupId>org.eclipse.jetty</groupId>
-				<artifactId>jetty-webapp</artifactId>
+				<artifactId>jetty-servlet</artifactId>
 				<version>${jetty.version}</version>
 			</dependency>
+
+
 
 			<dependency>
 				<groupId>org.eclipse.jetty</groupId>
@@ -52,16 +56,62 @@
 			</dependency>
 
 			<dependency>
-				<groupId>org.eclipse.jetty</groupId>
-				<artifactId>jetty-jsp</artifactId>
-				<version>${jetty.version}</version>
+				<groupId>javax.servlet</groupId>
+				<artifactId>javax.servlet-api</artifactId>
+				<version>3.1.0</version>
 			</dependency>
-
 			<dependency>
 				<groupId>org.eclipse.jetty</groupId>
-				<artifactId>jetty-servlet</artifactId>
+				<artifactId>jetty-annotations</artifactId>
 				<version>${jetty.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-webapp</artifactId>
+				<version>${jetty.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>apache-jsp</artifactId>
+				<version>${jetty.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>apache-jstl</artifactId>
+				<version>${jetty.version}</version>
+				<type>pom</type>
+			</dependency>
+
+
+
+    <dependency>
+        <groupId>org.mortbay.jasper</groupId>
+        <artifactId>apache-el</artifactId>
+        <version>8.5.4</version>
+    </dependency>
+    <dependency>
+        <groupId>org.mortbay.jasper</groupId>
+        <artifactId>apache-jsp</artifactId>
+        <version>8.5.4</version>
+    </dependency>
+    <dependency>
+        <groupId>org.mortbay.jasper</groupId>
+        <artifactId>jasper-jsp</artifactId>
+        <version>8.5.4</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.apache.taglibs</groupId>
+        <artifactId>taglibs-standard-impl</artifactId>
+        <version>1.2.5</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.taglibs</groupId>
+        <artifactId>taglibs-standard-spec</artifactId>
+        <version>1.2.5</version>
+    </dependency>
+
+
 
 			<!-- Logging dependency -->
 			<dependency>

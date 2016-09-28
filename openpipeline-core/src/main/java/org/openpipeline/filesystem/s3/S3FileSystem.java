@@ -1,14 +1,13 @@
-package com.openpipeline.filesystem.s3;
+package org.openpipeline.filesystem.s3;
 
 import java.io.IOException;
 import java.io.InputStream;
 
+import org.openpipeline.filesystem.s3.S3File;
+import org.openpipeline.filesystem.s3.S3FileSystem;
 import org.openpipeline.pipeline.connector.filesystem.FileIterator;
 import org.openpipeline.pipeline.connector.filesystem.FileSystem;
 import org.openpipeline.pipeline.item.Item;
-
-import com.openpipeline.filesystem.s3.S3File;
-import com.openpipeline.filesystem.s3.S3FileSystem;
 
 /**
  * Abstract base class for different file systems. Maps to java.util.File. Also
@@ -53,8 +52,8 @@ public class S3FileSystem implements FileSystem {
 	 */
 	@Override
 	public String getFullName() {
-		if (file instanceof com.openpipeline.filesystem.s3.S3File) {
-			return ((com.openpipeline.filesystem.s3.S3File) file).getFullPath();
+		if (file instanceof org.openpipeline.filesystem.s3.S3File) {
+			return ((org.openpipeline.filesystem.s3.S3File) file).getFullPath();
 		}
 		return null;
 	}

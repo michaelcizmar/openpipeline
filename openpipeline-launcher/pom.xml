@@ -3,7 +3,7 @@
 	<parent>
 		<artifactId>openpipeline</artifactId>
 		<groupId>org.openpipeline</groupId>
-		<version>0.9.6</version>
+		<version>0.9.7</version>
 	</parent>
 	<artifactId>openpipeline-launcher</artifactId>
 
@@ -50,11 +50,6 @@
 
 		<dependency>
 			<groupId>org.eclipse.jetty</groupId>
-			<artifactId>jetty-jsp</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.eclipse.jetty</groupId>
 			<artifactId>jetty-webapp</artifactId>
 		</dependency>
 
@@ -73,7 +68,6 @@
 			<groupId>org.eclipse.jetty</groupId>
 			<artifactId>jetty-http</artifactId>
 		</dependency>
-
 
 		<!-- Logback dependency -->
 		<dependency>

@@ -2,11 +2,12 @@ package com.openpipeline.filesystem.s3;
 
 import java.io.IOException;
 
+import org.openpipeline.filesystem.s3.S3File;
+
 import junit.framework.TestCase;
 
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3Client;
-import com.openpipeline.filesystem.s3.S3File;
 
 public class TestS3File extends TestCase {
 

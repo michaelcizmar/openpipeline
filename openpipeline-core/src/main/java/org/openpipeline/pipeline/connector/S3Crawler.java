@@ -2,6 +2,8 @@ package org.openpipeline.pipeline.connector;
 
 import java.util.List;
 
+import org.openpipeline.filesystem.s3.S3File;
+import org.openpipeline.filesystem.s3.S3FileSystem;
 import org.openpipeline.pipeline.connector.Connector;
 import org.openpipeline.pipeline.connector.GenericScanner;
 import org.openpipeline.pipeline.connector.linkqueue.LinkQueue;
@@ -13,8 +15,6 @@ import org.slf4j.Logger;
 
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3Client;
-import com.openpipeline.filesystem.s3.S3File;
-import com.openpipeline.filesystem.s3.S3FileSystem;
 
 /**
  * A connector that scans an S3 file system and processes the files it finds.
